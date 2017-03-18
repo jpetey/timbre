@@ -1,9 +1,9 @@
 //when the user clicks an event 
-$('.event-list-item').click(function() {
+$('.event-list').click(function() {
 	//slide record into view
-	$('.record-player').toggleClass('record-player-active');
+	$('.record-player').addClass('record-player-active');
 	//slide event-list to the left
-	$('.event-list').toggleClass('push-3');
+	$('.event-list').removeClass('push-3');
 
 });
 
