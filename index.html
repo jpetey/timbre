@@ -56,8 +56,9 @@
             <h4>Hooking you up with local live music</h4>
             <br>
         </div>
+        <!--/logo & tagline-->
         
-        <!-- This <div> loads on inital pageload, but hides after user clicks either buttons -->    
+        <!-- This <div> loads on inital pageload, but hides after user clicks either button -->    
         <div id="pageload-buttons" class="col-12 text-center">
             <!-- Log in button -->
             <button type="button" id="login-btn" class="btn btn-warning">
@@ -71,6 +72,7 @@
                 <span class="align-text-bottom">&nbsp;SIGN UP</span>
             </button>
         </div>
+        <!--/#pageload-buttons-->
         
         <!-- This <div> shows itself if user clicks #login-btn above -->   
         <div class="col-12 hidden" id="login-form">
@@ -88,6 +90,7 @@
                 <div class="col-12 mx-auto hidden" id="errorMsg">No User Found - Sign Up Or Try Again</div>
             </form>
         </div>
+        <!--/#login-form-->
 
         <!-- Modal triggered if user clicks #signup-btn above -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">   
@@ -124,6 +127,7 @@
                 </div>
             </div>
         </div>
+        <!-- #myModal -->
 
         <!-- Regional Dropdown Menu --> 
         <div class="form-group hidden" id="regional-dropdown">
@@ -136,13 +140,14 @@
                 <option value="92154">South Bay</option>
             </select>
          </div>
+         <!-- /#regional-dropdown -->
         
     </div>
         
 	
     <!-- END PAGE CONTENT -->
 
-    <!-- Vue -->
+    <!-- import Vue.js -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- import firebase.js -->
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
@@ -150,7 +155,7 @@
     <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
 
     
-
+    <!-- Javascript for non-firebase related items -->
     <script>
 
         function selectLogin() {
@@ -173,7 +178,11 @@
 
     </script>
 
+
+    <!--Link to Eventful API -->
     <script type="text/javascript" src="https://api.eventful.com/js/api"></script>
+
+    <!-- import custom js for index.html -->
     <script type="text/javascript" src="assets/js/index-style.js"></script>
 
 
