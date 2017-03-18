@@ -275,33 +275,4 @@ function selectMetroByZipcode(zipcode){
   //    });
   //   });
 
-  
-    
-
-    // //first try html grabs>>>> this was only returning 1 object
-    // $("#city_search").html("<br>Event Location : " + gData[i].city + "<br>" );
-    
-    // $("#data-date").html(displayDate);
-    // $("#data-eventName").html(gData[i].title);
-    // $("#data-venue").html(gData[i].venue);
-    // //$("#test4").html("<br>" + eventListing.url + "<br>" );
-
-    // $("#dImg").attr("src",gData[i].imageStr);
-    // //$("#data-image").append("<img src='" + gData[i].imageStr + "' width='180' height='180'>");
-    
-    // console.log(gData[i].imageStr);
-  
- 
-//show record-player when user clicks event
-    //   function showRecordPlayer() {
-    //       document.getElementById("record-player").style.display = "block";
-    //   }
-    //   //show my-list when user clicks heart
-    //   function showMyList() {
-    //       document.getElementById("my-list-drawer").style.display = "block";
-    //       }
-    // $("#record-player").on("click", function(){
-    //   $(".info-list").clear();
-
-    // });
 
