@@ -1,13 +1,7 @@
-// function initialSearch(){
 
-//   window.location.src ="../results.html";
+//the variable necessary to launch our page from index.html
+var text = window.location.hash.substring(1)
 
-// }
-// initialSearch(clickSanDiegoMetro());
-
-// $("#sd-m").on("click",function(){
-//  initialSearch(clickSanDiegoMetro());
-// })
 //this makes our returned data show up in a global array
 var gData = [];
 
@@ -23,24 +17,22 @@ var gData = [];
       sort_order: "popularity"
    };
 
-$(function() {
-    var attrData = window.location.hash.substring(1,6);
-    console.log(attrData);
-
-    selectMetroByZipcode(attrData.attribute);
-
-    var userKey = window.location.hash.substring(8);
-    console.log(userKey);
-    
-});
-
   $(".selection-location").on("click", function(e){
     e.preventDefault();
     $("#event-list").empty();
     var attrData = $(this).data();
     selectMetroByZipcode(attrData.attribute);
 });
+$(function() {
+   var attrData = window.location.hash.substring(1,6);
+   console.log(attrData);
 
+   selectMetroByZipcode(attrData.attribute);
+
+   var userKey = window.location.hash.substring(8);
+   console.log(userKey);
+   
+});
 
 //setting my arguments to return data
 function selectMetroByZipcode(zipcode){
@@ -215,7 +207,36 @@ function selectMetroByZipcode(zipcode){
   });
 }
 
+//ITUNES API CALLING
 
+  $("#play-song").on("click"),function(event){
+
+    var artist = $("play-song").attr("data-artist").val();
+
+    var songStr = artist.split(" ").join("+");
+
+   
+
+
+    $.getJSON(
+      'https://itunes.apple.com/search?term=' + songStr + '&limit=25&callback=?', 
+      function iTunesCall( data ) {
+
+         myData = data;
+         console.log(data);
+         console.log(myData.results[0].previewUrl);
+       
+   var fSound = myData.results[i].previewUrl;
+
+         var sound = new Audio(fSound);
+         
+   sound.play();
+      
+
+      });
+ iTunesCall();
+ 
+  }
 
 //
 
@@ -236,41 +257,3 @@ function selectMetroByZipcode(zipcode){
   // sound.play();
   //    });
   //   });
-
-  
-    
-
-    // //first try html grabs>>>> this was only returning 1 object
-    // $("#city_search").html("<br>Event Location : " + gData[i].city + "<br>" );
-    
-    // $("#data-date").html(displayDate);
-    // $("#data-eventName").html(gData[i].title);
-    // $("#data-venue").html(gData[i].venue);
-    // //$("#test4").html("<br>" + eventListing.url + "<br>" );
-
-    // $("#dImg").attr("src",gData[i].imageStr);
-    // //$("#data-image").append("<img src='" + gData[i].imageStr + "' width='180' height='180'>");
-    
-    // console.log(gData[i].imageStr);
-  
- 
-//show record-player when user clicks event
-    //   function showRecordPlayer() {
-    //       document.getElementById("record-player").style.display = "block";
-    //   }
-    //   //show my-list when user clicks heart
-    //   function showMyList() {
-    //       document.getElementById("my-list-drawer").style.display = "block";
-    //       }
-    // $("#record-player").on("click", function(){
-    //   $(".info-list").clear();
-
-    // });
-
-
-
-
-
-
-
-
