@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<title>Timbre</title>
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!--Import 'Permanent Marker' Font-->
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+
+    <!--Import bootstrap.css-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!--Link to custom CSS-->
+	<link rel="stylesheet" type="text/css" href="assets/css/index-style.css">
+
+</head>
+
+<body>
+
+    <!--Import jQuery & tether before bootstrap.js-->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+    <!--Import bootstrap.js-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- BEGIN PAGE CONTENT -->
+
+    <!-- My List & Logout Options (hidden until User Logs In / Signs Up) -->
+    <header id="masthead">
+        <div class="container-fluid text-right hidden" id="user-options">
+          <nav>
+            <!--Link to User's Saved List-->
+            <a href="list.html" id="list-link"><i class="material-icons">queue_music</i>&nbsp;My List&nbsp;</a>
+            <a href="#" id="log-out">&nbsp;&nbsp;Log Out</a>
+          </nav>
+        </div>
+    </header>
+    
+    <div id="page-content" class="container-fluid vertical-center">
+        
+        <!-- This <div> containing logo & tagline are page-permanent -->
+        <div class="col-12 text-center">            
+            <!-- Main Logo -->
+            <img src="assets/images/logo.png" class="img-fluid">
+            <!-- Tagline -->
+            <h4>Hooking you up with local live music</h4>
+            <br>
+        </div>
+        
+        <!-- This <div> loads on inital pageload, but hides after user clicks either buttons -->    
+        <div id="pageload-buttons" class="col-12 text-center">
+            <!-- Log in button -->
+            <button type="button" id="login-btn" class="btn btn-warning">
+                <i class="material-icons">vpn_key</i>
+                <span class="align-text-bottom">&nbsp;&nbsp;LOG IN&nbsp;&nbsp;</span>
+            </button>
+
+            <!-- Sign up button with modal trigger-->
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" id="sign-up-btn">
+                <i class="material-icons">create</i>
+                <span class="align-text-bottom">&nbsp;SIGN UP</span>
+            </button>
+        </div>
+        
+        <!-- This <div> shows itself if user clicks #login-btn above -->   
+        <div class="col-12 hidden" id="login-form">
+            <form class="form-inline col-10 mx-auto">
+                <div class="form-group">
+                    <label class="sr-only">Email</label>
+                    <input type="text" class="form-control" id="email-login" placeholder="E-mail">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Password</label>
+                    <input type="password" class="form-control" id="password-login" placeholder="Password">
+                    
+                </div>
+                <button type="submit" class="btn btn-warning" id="validate-user-btn">LOGIN</button>
+                <div class="col-12 mx-auto hidden" id="errorMsg">No User Found - Sign Up Or Try Again</div>
+            </form>
+        </div>
+
+        <!-- Modal triggered if user clicks #signup-btn above -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">   
+            <div class="modal-dialog">
+                <div class="modal-content">         
+                    <div class="modal-header">                           
+                        <h4 class="modal-title" id="myModalLabel">
+                        <img id="modal-hand" height="27px" src="assets/images/metal.png"> 
+                        &nbsp;Sign Up To Rock!&nbsp;
+                        <img id="modal-hand" height="27px" src="assets/images/metal.png"></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>         
+                    <div class="modal-body">
+                        <form id="signup-form">
+                            <div class="form-group">
+                                <label for="name" class="form-control-label">Name:</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email-new" class="form-control-label">Email:</label>
+                                <input type="email" class="form-control" id="email-new">
+                                <small id="email-validate"></small>
+                            </div>
+                            <div class="form-group" for="pwd">
+                                <label for="password-new" class="form-control-label">Select Password:</label>
+                                <input id="password-new" type="password" class="form-control">
+                                <small id="password-validate">Must be at least 6 characters long.</small>
+                            </div>
+                        </form>
+                    </div>         
+                    <div class="modal-footer">                                   
+                        <button type="button" class="btn btn-warning" id="create-user">Sign Up!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regional Dropdown Menu --> 
+        <div class="form-group hidden" id="regional-dropdown">
+            <select class="form-control fields col-4 mx-auto" id="area-of-interest">
+                <option value="" selected>Select your Region of Interest</option>
+                <option value="North+Coastal">North Coastal</option>
+                <option value="North+Inland">North Inland</option>
+                <option value="San+Diego+Metro">San Diego Metro</option>
+                <option value="East+County">East County</option>
+                <option value="South+Bay">South Bay</option>
+            </select>
+         </div>
+        
+    </div>
+        
+	
+    <!-- END PAGE CONTENT -->
+
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import firebase.js -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <!-- VueFire -->
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+
+    
+
+    <script>
+
+        function selectLogin() {
+            event.preventDefault()
+            $("#pageload-buttons").hide("slow");
+            $("#login-form").show();
+        }
+
+        $(document).ready(function() {
+            $("#signup-btn").click(function() {
+                $("#myModal").modal('show');
+            });
+        });
+
+        function validateUser() {
+            event.preventDefault();
+        }
+
+        $("#login-btn").on("click", selectLogin); 
+
+    </script>
+
+    <script type="text/javascript" src="http://api.eventful.com/js/api"></script>
+    <script type="text/javascript" src="assets/js/index-style.js"></script>
+
+
+
+</body>
+</html>

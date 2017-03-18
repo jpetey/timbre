@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Timbre</title>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+	</head>
+	<body>
+		<header class="container-fluid">
+			<div class="row top">
+				<img src="assets/images/logo.png" class="col-3 logo">
+				<nav class="nav nav-masthead col-9">
+					<a id="myList" class="nav-link" href="list.html"><img src="assets/images/metal.png" width="40" height="40">MY LIST</a>
+				</nav>
+			</div>
+	  		<div class="row pb-2">
+	  			<div class="col-6 push-3 flexrow">
+		  			<div class="col-6">
+		  				<p>Hook me up with some live tunes in:</p>
+		  			</div>
+		  				<div class="col-6 dropdown" id="user-location">
+
+						  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">America's Finest City
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    <button class="dropdown-item selection-location" id="metro" data-attribute="92101">San Diego Metro</button>
+						    <button class="dropdown-item selection-location" id="coastal" data-attribute="92011">North County Costal</button>			
+						    <button class="dropdown-item selection-location" id="noinland" data-attribute="92070">North County Inland</button>
+						     <button class="dropdown-item selection-location" id="east" data-attribute="91901">East County</button>
+						      <button class="dropdown-item selection-location" id="southbay" data-attribute="92154">South Bay</button>
+						  </div>
+					 	</div>					
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="container-fluid noOverflow">
+				<div class="row"  id="container">
+
+					<section class="col-6 push-3 event-list" id="event-list">
+					</section>
+
+					<section class="col-6 mt-3 record-player">
+						<div class="col-10 push-1">
+							<img src="assets/images/turntable.png" height="300px" width="300px">	
+						</div>
+						<div class="col-12 flexrow">
+							<a class="col-2" id="heart" href="#heart"><i class="fa fa-heart"></i></a>
+							<section class="col-10">
+								<div>
+									<p class="detail-title clrme">Artist:</p>
+								</div>					
+								<div>
+									<p class="detail-date clrme">Date in San Diego:</p><span></span>
+								</div>
+								<div>
+									<p class="detail-venue clrme">Venue:</p><span></span>
+								</div>
+								<div>
+									<p class="event-url">More:</p><span id="citySearch"></span>
+								</div>
+							</section>
+						</div>
+					</section>
+					<div>
+						<section class="col-6 my-list-drawer">
+							<header class="row"> 
+								<a id="myList" class="nav-link" href="#myList"><img src="assets/images/metal.png" width="40" height="40">MY LIST</a>
+							</header>
+							<div class="row liked">
+								<div class="col-9" id="liked">
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>	
+		</main>
+
+
+
+
+
+
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="assets/js/results.js"></script>
+		<script type="text/javascript" src="assets/js/logic2.js"></script>
+		<script type="text/javascript" src="http://api.eventful.com/js/api"></script>		
+		<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="https://cdn.rawgit.com/HubSpot/tether/v1.3.4/dist/js/tether.min.js"></script>
+	
+	</body>
+</html>
+
+
+
+
+
