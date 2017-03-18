@@ -88,6 +88,8 @@ $(document).ready(function() {
     var email = $("#email-login").val();
 
     var password = $("#password-login").val();
+
+
       
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
 
@@ -115,6 +117,13 @@ $(document).ready(function() {
         $("#login-form").hide();
         $("#random-lyric").hide();
         $("#regional-dropdown").show();
+        $('#area-of-interest').html(
+            '<option value="" disabled selected>Select Region<option>' +
+            '<option value="92101">San Diego Metro</option>' +                
+            '<option value="92011">North Coastal</option>' +
+            '<option value="92070">North Inland</option>' +
+            '<option value="91901">East County</option>' +
+            '<option value="92154">South Bay</option>)')
 
       } else {
         // user is logged out
