@@ -23,6 +23,17 @@ var gData = [];
       sort_order: "popularity"
    };
 
+$(function() {
+    var attrData = window.location.hash.substring(1,6);
+    console.log(attrData);
+
+    selectMetroByZipcode(attrData.attribute);
+
+    var userKey = window.location.hash.substring(8);
+    console.log(userKey);
+    
+});
+
   $(".selection-location").on("click", function(e){
     e.preventDefault();
     $("#event-list").empty();

@@ -65,12 +65,12 @@ $(document).ready(function() {
   
   $("#area-of-interest").on("click", function () {
    
-    var userRegion = $('#area-of-interest option:selected').text();
+    var userRegion = $('#area-of-interest option:selected').attr("value");
     console.log(userRegion);
 
     var currentUser = firebase.auth().currentUser.uid;
 
-    if (userRegion !== "Select your Region of Interest") {
+    if (userRegion !== "") {
 
       window.location.href = 'results.html' + '#' + userRegion + '#' + currentUser;
 
