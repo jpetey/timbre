@@ -2,6 +2,16 @@
 //the variable necessary to launch our page from index.html
 var text = window.location.hash.substring(1)
 
+// function initialSearch(){
+
+//   window.location.src ="../results.html";
+
+// }
+// initialSearch(clickSanDiegoMetro());
+
+// $("#sd-m").on("click",function(){
+//  initialSearch(clickSanDiegoMetro());
+// })
 //this makes our returned data show up in a global array
 var gData = [];
 
@@ -23,16 +33,7 @@ var gData = [];
     var attrData = $(this).data();
     selectMetroByZipcode(attrData.attribute);
 });
-$(function() {
-   var attrData = window.location.hash.substring(1,6);
-   console.log(attrData);
 
-   selectMetroByZipcode(attrData.attribute);
-
-   var userKey = window.location.hash.substring(8);
-   console.log(userKey);
-   
-});
 
 //setting my arguments to return data
 function selectMetroByZipcode(zipcode){
@@ -107,9 +108,9 @@ function selectMetroByZipcode(zipcode){
 
 
           //create variables for the desired display info
-          var eventDay = $("<p class='local-event info-event event-date'>").text(displayDay);
-          var eventMonth = $("<p class='local-event info-event event-date'>").text(displayMonth);
-          var eventTime = $("<p class='local-event info-event event-date'>").text(displayTime);
+          var eventDay = $("<p class='local-event info-event event-date event-day'>").text(displayDay);
+          var eventMonth = $("<p class='local-event info-event event-date event-month'>").text(displayMonth);
+          var eventTime = $("<p class='local-event info-event event-date event-time'>").text(displayTime);
           var eventTitle = $("<p class='local-event info-event uppercase event-title'>").text(gData[i].title); 
           var eventVenue = $("<p class='local-event info-event event-venue'>").text(gData[i].venue); 
           
@@ -149,8 +150,11 @@ function selectMetroByZipcode(zipcode){
           activeElm = $(this).parent();
           console.log(activeElm);
 
+          var eventDay = $(this).parent().find(".event-day").text();
+          var eventMonth = $(this).parent().find(".event-month").text();
+          var eventTime = $(this).parent().find(".event-time").text();
+          var eventDates = eventDay + ' ' + eventMonth + ' ' + eventTime;
           var eventTitles = $(this).parent().find(".event-title").text();
-          var eventDates = $(this).parent().find(".event-date").text();
           var eventVenues = $(this).parent().find(".event-venue").text();
           console.log($(this).find(".event-date").text());
 
@@ -163,80 +167,93 @@ function selectMetroByZipcode(zipcode){
         //$(".detail-genre").append(gData[i].genre)
     
   });
+
+
     //show my-list when user clicks heart
     $("#heart").on("click",function(h){
+            // prevent page navigation
             h.preventDefault();
             
+            // create data wrapper
             var likedList = $("<div>");
             likedList.attr("class","info-event");
 
+            // get event data and put on elements
+            var eventDay = activeElm.find(".event-day").text();
+            var eventMonth = activeElm.find(".event-month").text();
+            var eventTime = activeElm.find(".event-time").text();
+            
+            var eventDateText = eventDay + ' ' + eventMonth + ' ' + eventTime;
             var eventTitleText = activeElm.find(".event-title").text();
-            var eventDateText = activeElm.find(".event-date").text();
+            // var eventDateText = activeElm.find(".event-date").text();
             var eventVenueText = activeElm.find(".event-venue").text();
+            var eventImageSrc = activeElm.find(".artist-pic").attr("src");
 
             var title = $("<h4>");
-            title.text(eventTitleText);
             var date = $("<h5>");
-            date.text(eventDateText);
             var venue = $("<h5>");
-            venue.text(eventVenueText);
-
-   
-            console.log($(this).parent().find(".event-date").text()); 
-            
-
             var eventImg = $("<img class='artist-pic rounded-circle'>"); 
-            eventImg.attr("src", activeElm.find(".artist-pic").attr("src"));
 
+            title.text(eventTitleText);
+            date.text(eventDateText);
+            venue.text(eventVenueText);            
+            eventImg.attr("src", eventImageSrc);
 
+            // add event data to wrapper
             likedList.append(eventImg);
             likedList.append(date);
             likedList.append(title);
             likedList.append(venue);
             
-            console.log(eventImage.attr("src"));
+            // mount event data-collection to dom
+            $(".liked").prepend(likedList);
 
-          $(".liked").prepend(likedList);
-
-            //$(".fist").attr("src", eventImage.attr("src"));
+            // close drawer after 1 second
             setTimeout(function(){
               $('.my-list-drawer').removeClass('my-list-drawer-active');
-            },5000)
+            },1000)
+
+            //store event data
+            var currentEvent = {
+              day: eventDay,
+              month: eventMonth,
+              time: eventTime,
+              date: eventDateText,
+              title:eventTitleText,
+              venue:eventVenueText,
+              image:eventImageSrc,
+            }
+
+
+            // get eventDataCollection object from localStorage
+            var allEventDataString = localStorage.getItem('eventDataCollection') || '{}';
+            var allEventData = JSON.parse(allEventDataString);
+            // // if there was no eventDataCollection object
+            // if (!allEventData) {
+            //   // assign eventDataCollection to empty object
+            //   allEventData = {};
+            // }
+            console.log(allEventData);
+            // create a unique key for current event 
+            var uniqueName = currentEvent.date + currentEvent.title;
+            // add new object to existing event data
+
+            // adding the event data to the existing event data collection 
+            allEventData[uniqueName] = currentEvent;
+
+
+            console.log(allEventData);
+            var allEventDataJson = JSON.stringify(allEventData);
+
+
+            localStorage.setItem('eventDataCollection', allEventDataJson);
+
     });
     
   });
 }
 
-//ITUNES API CALLING
 
-  $("#play-song").on("click"),function(event){
-
-    var artist = $("play-song").attr("data-artist").val();
-
-    var songStr = artist.split(" ").join("+");
-
-   
-
-
-    $.getJSON(
-      'https://itunes.apple.com/search?term=' + songStr + '&limit=25&callback=?', 
-      function iTunesCall( data ) {
-
-         myData = data;
-         console.log(data);
-         console.log(myData.results[0].previewUrl);
-       
-   var fSound = myData.results[i].previewUrl;
-
-         var sound = new Audio(fSound);
-         
-   sound.play();
-      
-
-      });
- iTunesCall();
- 
-  }
 
 //
 
@@ -257,14 +274,5 @@ function selectMetroByZipcode(zipcode){
   // sound.play();
   //    });
   //   });
-
-  
-
-
-
-
-
-
-
 
 
